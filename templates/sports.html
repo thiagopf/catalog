@@ -1,0 +1,84 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row top-menu">
+		<div class="col-md-10"></div>
+		<div class="col-md-2 text-right">
+					</div>
+	</div>
+	<div class="row divider blue">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner main">
+		<div class="col-md-1"></div>
+		<div class="col-md-11 padding-none">
+			<h1>Sports</h1>
+		</div>
+	</div>
+
+<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<a href="{{url_for('newSport')}}">
+			<button class="btn btn-default" id="new-restaurant">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Sport
+			</button>
+		</a>
+	</div>
+<div class="row">
+  <div class="col-lg-6">
+		<div class="row padding-top padding-bottom">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 padding-none">
+				<div class="col-md-10 padding-none">
+					<h1>Sportes</h1>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		{% for sport in sports %}
+			<a href = "{{url_for('showItems', sport_id = sport.id)}}">
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-10 restaurant-list">
+						<h3>{{sport.name}}</h3>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+			</a>
+		{% endfor %}
+	</div>
+	<div class="col-lg-6">
+		<div class="row padding-top padding-bottom">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 padding-none">
+				<h1>Latest</h1>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		{% for item in items %}
+			<a href = "{{url_for('showItem', item_id = item.id)}}">
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-10 restaurant-list">
+						<h3>{{item.name}}</h3>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+			</a>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class="row divider green">
+	<div class="col-md-12"></div>
+</div>
+<div class="row banner menu">
+	<div class="col-md-11 col-md-offset-1 padding-none">
+		<h1>{{ sport.name }}
+		<figure class="creator">
+			<img src="{{ url_for('static', filename='blank_user.gif') }}">
+			<figcaption>Item creator's name goes here</figcaption>
+		</figure>
+		</h1>
+
+	</div>
+</div>
+
+<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+</div>
+
+<div class="row">
+		<div class="col-md">
+			<h2>{{item.name}}</h2>
+			<p>{{item.description}}</p>
+			<p>{{item.price}}</p>
+			<a href='{{url_for('editItem', sport_id = sport.id, item_id=item.id ) }}'>Edit</a>
+			<a href='{{url_for('deleteItem', sport_id = sport.id, item_id=item.id ) }}'>Delete</a>
+		</div>
+
+</div>
+	{% endblock %}
